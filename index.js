@@ -23,8 +23,8 @@ exports.register = function (server, opts, next) {
       for (let plugin of opts.plugins) {
         let error;
         try {
-          if (plugin.detect(request, reply)) {
-            error = plugin.handle(request.reply);
+          if (plugin.detect(request.response)) {
+            error = plugin.handle(request.response);
           }
         } catch (e) {
           throw e;
