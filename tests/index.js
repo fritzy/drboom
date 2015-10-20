@@ -25,6 +25,27 @@ let drboomTest2 = {
 
 let server = new hapi.Server();
 server.connection();
+server.route({
+  method: 'post',
+  path: '/throw',
+  handler: (request, reply) => {
+    throw new Error('Broken!');
+  }
+});
+server.route({
+  method: 'post',
+  path: '/reply',
+  handler: (request, reply) => {
+    reply(new Error('Broken!'));
+  }
+});
+server.route({
+  method: 'post',
+  path: '/promise',
+  handler: (request, reply) => {
+    reply(Promise.reject(new Error('die')));
+  }
+});
 server.register([
   {
     register: drboom,
@@ -42,6 +63,42 @@ server.register([
       payload: '{}'
     }, (res) => {
       test.equals(res.statusCode, 400)
+    });
+  });
+
+  tape('thrown error', (test) => {
+    test.plan(1);
+
+    server.inject({
+      method: 'post',
+      url: '/throw',
+      payload: '{}'
+    }, (res) => {
+      test.equals(res.statusCode, 400);
+    });
+  });
+
+  tape('replied error', (test) => {
+    test.plan(1);
+
+    server.inject({
+      method: 'post',
+      url: '/reply',
+      payload: '{}'
+    }, (res) => {
+      test.equals(res.statusCode, 400);
+    });
+  });
+
+  tape('promise error', (test) => {
+    test.plan(1);
+
+    server.inject({
+      method: 'post',
+      url: '/promise',
+      payload: '{}'
+    }, (res) => {
+      test.equals(res.statusCode, 400);
     });
   });
 });
