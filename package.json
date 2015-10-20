@@ -1,0 +1,35 @@
+{
+  "name": "drboom",
+  "version": "0.0.1",
+  "description": "Detect and convert errors into Hapi Boom HTTP errors.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tests/index | tap-spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/fritzy/drboom.git"
+  },
+  "keywords": [
+    "http",
+    "error",
+    "errors",
+    "hapi",
+    "boom"
+  ],
+  "author": "Nathan Fritz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fritzy/drboom/issues"
+  },
+  "homepage": "https://github.com/fritzy/drboom#readme",
+  "dependencies": {
+    "boom": "^2.9.0",
+    "joi": "^6.9.1"
+  },
+  "devDependencies": {
+    "hapi": "^11.0.1",
+    "tap-spec": "^4.1.0",
+    "tape": "^4.2.1"
+  }
+}
