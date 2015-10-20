@@ -31,14 +31,14 @@ Then when a route serves an a Joi validation result as the first argument, the r
 
 A Dr. Boom plugin is an object with two functions, `detect` and `handle`.
 
-__detect(response)__
+__detect(value, request, reply)__
 
-Response is the first argument sent to reply.
+`value` is the first argument sent to reply.
 
 return: Boolean, false meaning that you didn't detect an error your handler can deal with. 
 
-__handle(response)__
+__handle(value, request, reply)__
 
-Response is the first argument sent to reply.
+`value` is the first argument sent to reply.
 
-return: Boom error
+return: Boom error or falsey.
