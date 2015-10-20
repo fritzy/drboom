@@ -17,22 +17,21 @@ exports.register = function (server, opts, next) {
 
   server.ext('onPostHandler', (request, reply) => {
 
-    let source = request.response.source;
+    let source = request.response;
+    if (!(source instanceof Error)) {
+      return reply.continue();
+    }
 
     if (request.method == 'get' && source === null && opts.getNull404) {
-      throw Boom.notFound();
+      reply(Boom.notFound());
     } else {
       for (let plugin of opts.plugins) {
-        let error, detect;
-        try {
-          if (plugin.detect(source, request, reply)) {
-            error = plugin.handle(source, request, reply);
-          }
-        } catch (e) {
-          throw e;
+        let error;
+        if (plugin.detect(source, request, reply)) {
+          error = plugin.handle(source, request, reply);
         }
         if (typeof error !== 'undefined') {
-          throw error;
+          return reply(error);
         }
       }
     }
