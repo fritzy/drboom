@@ -15,7 +15,7 @@ exports.register = function (server, opts, next) {
     throw regError;
   }
 
-  server.ext('onPostHandler', (request, reply) => {
+  server.ext('onPreResponse', (request, reply) => {
 
     let source = request.response;
     if (!(source instanceof Error)) {
