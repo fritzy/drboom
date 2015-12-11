@@ -59,7 +59,7 @@ server.register([
 
     server.inject({
       method: 'post',
-      url: '/',
+      url: '/throw',
       payload: '{}'
     }, (res) => {
       test.equals(res.statusCode, 400)
