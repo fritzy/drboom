@@ -1,6 +1,6 @@
 {
   "name": "drboom",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "description": "Detect and convert errors into Hapi Boom HTTP errors.",
   "main": "index.js",
   "scripts": {
