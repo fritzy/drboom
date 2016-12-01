@@ -28,7 +28,7 @@
     "joi": "^9.1.0"
   },
   "devDependencies": {
-    "hapi": "^15.1.1",
+    "hapi": "^16.0.1",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.1"
   }
