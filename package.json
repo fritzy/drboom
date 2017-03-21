@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/fritzy/drboom#readme",
   "dependencies": {
-    "boom": "^4.1.0",
+    "boom": "^4.3.0",
     "joi": "^10.1.0"
   },
   "devDependencies": {
